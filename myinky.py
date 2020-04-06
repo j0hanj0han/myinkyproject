@@ -10,14 +10,17 @@ img = Image.new("P", (screen_width, screen_height))
 draw = ImageDraw.Draw(img)
 
 # message to show
-hanken_bold_font = ImageFont.truetype(HankenGroteskBold, int(35 * scale_size))
+text = "Hello World !"
+font = ImageFont.load_default()
+
 
 # Calculate the positioning and draw the "Hello" text
 
-hello_w, hello_h = hanken_bold_font.getsize("Hello")
-hello_x = int((screen_width - hello_w) / 2)
-hello_y = 0 + padding
-draw.text((hello_x, hello_y),"white", "Hello") 
+text_w, text_h = font.getsize(text)
+text_x = int((screen_width - text_w) / 2)
+text_y = 0 + padding
+print(text_x, text_y)
+draw.text(xy=(text_x, text_y),text=text, stroke_fill="black",fill="white", stroke_width=10, font=font ) 
 
 #save the image 
 img.save("test.png", "PNG")
