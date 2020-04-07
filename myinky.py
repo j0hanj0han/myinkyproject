@@ -21,16 +21,27 @@ def add_text(text_to_add=None):
     draw.text(xy=(text_x, text_y),text=text, stroke_fill="black",fill="white", stroke_width=10, font=font ) 
 
 def draw_lines():
+    # draw a border around the screen
     # Top and bottom y-coordinates for the white strip
     y_top = int(screen_height)
-    y_bottom = y_top + int(screen_height * (4.0 / 10.0))
-    print("ytop", y_top)
-    print("ybottom", y_bottom)
+    x_top = int(screen_width)
+
+    print(x_top, y_top)
     # Draw the red, white, and red strips
     for y in range(0, y_top):
-        for x in range(0, int(screen_width/2)):
-            print(type((x,y)))
-            img.putpixel(xy=(x, y), value=(0,0,0))
+        img.putpixel(xy=(0, y), value=(0,0,0))
+        #split in two frame
+        #img.putpixel(xy=(103, y), value=(0,0,0))
+        img.putpixel(xy=(211, y), value=(0,0,0))
+
+
+    for x in range(0, x_top):
+        print(x)
+        img.putpixel(xy=(x, 0), value=(0,0,0))
+        img.putpixel(xy=(x, 103), value=(0,0,0))
+
+
+
 
 
 # # Display the completed name badge
@@ -42,4 +53,4 @@ if __name__ == "__main__":
     add_text()
     draw_lines()
     #save the image 
-    img.save("test.png", "PNG")
+    img.save("test1.png", "PNG")
