@@ -1,6 +1,9 @@
 from PIL import Image, ImageFont, ImageDraw
 from font_hanken_grotesk import HankenGroteskBold, HankenGroteskMedium
 import datetime
+# from inky import InkyMockPHAT as InkyPHAT
+# colour = "black"
+# inky_display = InkyPHAT(colour)
 
 # new drawing object
 screen_width = 212
@@ -8,6 +11,9 @@ screen_height = 104
 padding = 0
 scale_size = 1
 img = Image.new("P", (screen_width, screen_height))
+#img = Image.new("P", (inky_display.WIDTH, inky_display.HEIGHT))
+
+
 draw = ImageDraw.Draw(img)
 
 # message to show
