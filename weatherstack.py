@@ -25,11 +25,11 @@ def convert_am_to_pm():
     pass
 
 
-def get_weather(city=None):
+def get_weather(city):
     json_data = connect_to_api(city)
     #print(json_data)
     date_forecast = str(list(json_data["forecast"].keys())[0])
-    city_name = json_data["request"]["query"]
+    city_name = json_data["location"]["name"]
     region = json_data["location"]["region"]
     weather_text = json_data["current"]["weather_descriptions"][0]
     temperature_now = json_data["current"]["temperature"]
@@ -40,11 +40,11 @@ def get_weather(city=None):
     sunrise = json_data["forecast"][date_forecast]["astro"]["sunrise"]
     sunset = json_data["forecast"][date_forecast]["astro"]["sunset"]
 
-    city_name = f"Météo : {city_name}, {region}"
+    city_name = f"{city_name}, {region}"
     weather_text= f"Le temps est: {weather_text}"
     temperature_now = f"Température actuelle {temperature_now}°C"
     temperature_max=f=f"Température max {temperature_max}°C"
-    ensoleillement= f"{ensoleillement} heures de soleil aujourd'hui."
+    ensoleillement= f"{ensoleillement} h de soleil aujourd'hui."
     uv= f"Indice UV {uv_index}/10."
     sunrise = f"Le soleil se lève à: {sunrise}"
     sunset= f"Le soleil se couche à: {sunset}"

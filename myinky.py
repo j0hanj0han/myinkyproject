@@ -5,16 +5,18 @@ import weatherstack
 import requests
 import time
 
-# from inky import InkyMockPHAT as InkyPHAT
-# colour = "black"
-# inky_display = InkyPHAT(colour)
+from inky import InkyPHAT as InkyPHAT
+colour = "black"
+inky_display = InkyPHAT(colour)
 
 # new drawing object
-screen_width = 212
-screen_height = 104
-img = Image.new("P", (screen_width, screen_height))
-# img = Image.new("P", (inky_display.WIDTH, inky_display.HEIGHT))
-draw = ImageDraw.Draw(img)
+# screen_width = 212
+# screen_height = 104
+screen_width = inky_display.WIDTH
+screen_height = inky_display.HEIGHT
+#img = Image.new("P", (screen_width, screen_height))
+
+
 
 
 def write_text(text, padding):
@@ -61,15 +63,12 @@ def add_time():
     write_text(now, 20)
 
 
-def add_meteo(city=None):
-    meteo = weatherstack.get_weather()
-    padding = 20
+def add_meteo(city):
+    meteo = weatherstack.get_weather(city)
+    padding = 10
     for element in meteo:
         write_text(element, padding)
         padding += 10
-
-
-
 
 
 if __name__ == "__main__":
@@ -78,15 +77,16 @@ if __name__ == "__main__":
     # add_meteo()
     # draw_lines()
     # img.save("test.png", "PNG")
-    cities = ["Montpellier", "Paris" "Argences", "La Batie-Neuve"]
+    cities = ["Montpellier", "Paris", "Argences", "La Batie-Neuve"]
     while True: 
         for city in cities:
-            add_text()
+            img = Image.new("P", (inky_display.WIDTH, inky_display.HEIGHT))
+            draw = ImageDraw.Draw(img)
             add_meteo(city)
             draw_lines()
             # # Display the completed name badge
-            # inky_display.set_image(img)
-            # inky_display.show()
+            inky_display.set_image(img)
+            inky_display.show()
             time.sleep(30)
 
 
