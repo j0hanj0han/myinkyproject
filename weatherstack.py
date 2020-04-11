@@ -13,7 +13,7 @@ def connect_to_api():
             f"http://api.weatherstack.com/forecast?access_key={api_key}&query={city}"
         )
         json_data = json.loads(response.text)
-        print(json)
+        #print(json_data)
         return json_data
     except Exception as e:
         print(e)
@@ -22,26 +22,42 @@ def connect_to_api():
 # json_data = json.loads(response.text)
 # print(pp.pprint(json_data))
 
+def convert_am_to_pm():
+    pass
+
 
 def get_weather():
     json_data = connect_to_api()
+
+    date_forecast = str(list(json_data["forecast"].keys())[0])
     city_name = json_data["request"]["query"]
     weather_text = json_data["current"]["weather_descriptions"][0]
     temperature_now = json_data["current"]["temperature"]
-    date_forecast = str(list(json_data["forecast"].keys())[0])
     temperature_min = json_data["forecast"][date_forecast]["mintemp"]
     temperature_max = json_data["forecast"][date_forecast]["maxtemp"]
+    ensoleillement= json_data["forecast"][date_forecast]["sunhour"]
+    uv_index= json_data["forecast"][date_forecast]["uv_index"]
+    sunrise = json_data["forecast"][date_forecast]["astro"]["sunrise"]
+    sunset = json_data["forecast"][date_forecast]["astro"]["sunset"]
 
-    print("------------------")
-    print("Météo pour la ville de :", city_name)
-    print("Temps actuel:", weather_text)
-    print("Température actuelle:", temperature_now)
-    print("Temperature minimale:", temperature_min)
-    print("Temperature maximale:", temperature_max)
-    print("-------------------")
-    meteo = [city_name, weather_text, temperature_now, temperature_min, temperature_max]
+    city_name = f"Météo pour la ville de: {city_name}"
+    weather_text= f"Le temps est: {weather_text}"
+    temperature_now = f"La température actuelle est de {temperature_now}°C"
+    temperature_max=f=f"La température maximale sera de {temperature_max}°C"
+    ensoleillement= f"{ensoleillement} heures de soleil aujourd'hui."
+    uv= f"Indice UV {uv_index}/10."
+    sunrise = f"Le soleil se lève à: {sunrise}"
+    sunset= f"Le soleil se couche à {sunset}"
+
+    meteo = [city_name, weather_text, temperature_now, temperature_max, ensoleillement, uv, sunrise, sunset]
+    #print(*meteo)
     return meteo
+     
+     # lever / coucher du soleil
+     # indice UV
+     # les saints
+     # humidity
+     # heure d'ensoleillement
 
-
-# if  __name__ == "__main__":
-#     get_weather()
+if  __name__ == "__main__":
+    get_weather()
