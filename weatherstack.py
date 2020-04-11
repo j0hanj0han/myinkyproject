@@ -40,10 +40,10 @@ def get_weather():
     sunrise = json_data["forecast"][date_forecast]["astro"]["sunrise"]
     sunset = json_data["forecast"][date_forecast]["astro"]["sunset"]
 
-    city_name = f"Météo pour la ville de: {city_name}"
+    city_name = f"Météo : {city_name}"
     weather_text= f"Le temps est: {weather_text}"
-    temperature_now = f"La température actuelle est de {temperature_now}°C"
-    temperature_max=f=f"La température maximale sera de {temperature_max}°C"
+    temperature_now = f"Température actuelle {temperature_now}°C"
+    temperature_max=f=f"Température max {temperature_max}°C"
     ensoleillement= f"{ensoleillement} heures de soleil aujourd'hui."
     uv= f"Indice UV {uv_index}/10."
     sunrise = f"Le soleil se lève à: {sunrise}"

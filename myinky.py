@@ -3,6 +3,7 @@ from font_hanken_grotesk import HankenGroteskBold, HankenGroteskMedium
 import datetime
 import weatherstack
 import requests
+import time
 
 # from inky import InkyMockPHAT as InkyPHAT
 # colour = "black"
@@ -60,10 +61,12 @@ def add_time():
     write_text(now, 20)
 
 
-def add_meteo():
+def add_meteo(city=None):
     meteo = weatherstack.get_weather()
-    meteo = meteo[0]
-    write_text(meteo, 40)
+    padding = 20
+    for element in meteo:
+        write_text(element, padding)
+        padding += 10
 
 
 # # Display the completed name badge
@@ -74,7 +77,17 @@ def add_meteo():
 if __name__ == "__main__":
 
     add_text()
-    add_time()
     add_meteo()
     draw_lines()
     img.save("test.png", "PNG")
+    cities = ["Montpellier", "Paris" "Argences", "La baties Neuve"]
+    while True: 
+        for city in cities:
+            add_text()
+            add_meteo(city)
+            draw_lines()
+            time.sleep(30)
+
+
+
+
