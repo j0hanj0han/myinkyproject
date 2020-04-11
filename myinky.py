@@ -69,23 +69,24 @@ def add_meteo(city=None):
         padding += 10
 
 
-# # Display the completed name badge
-# inky_display.set_image(img)
-# inky_display.show()
+
 
 
 if __name__ == "__main__":
 
-    add_text()
-    add_meteo()
-    draw_lines()
-    img.save("test.png", "PNG")
-    cities = ["Montpellier", "Paris" "Argences", "La baties Neuve"]
+    # add_text()
+    # add_meteo()
+    # draw_lines()
+    # img.save("test.png", "PNG")
+    cities = ["Montpellier", "Paris" "Argences", "La Batie-Neuve"]
     while True: 
         for city in cities:
             add_text()
             add_meteo(city)
             draw_lines()
+            # # Display the completed name badge
+            # inky_display.set_image(img)
+            # inky_display.show()
             time.sleep(30)
 
 
