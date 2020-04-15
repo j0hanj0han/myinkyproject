@@ -27,7 +27,7 @@ def convert_am_to_pm():
 
 def get_weather(city):
     json_data = connect_to_api(city)
-    #print(json_data)
+    print(json_data)
     date_forecast = str(list(json_data["forecast"].keys())[0])
     city_name = json_data["location"]["name"]
     region = json_data["location"]["region"]
@@ -59,5 +59,5 @@ def get_weather(city):
      # humidity
      # heure d'ensoleillement
 
-# if  __name__ == "__main__":
-#     get_weather("La batie neuve ")
+if  __name__ == "__main__":
+     get_weather("La batie neuve ")
