@@ -1,1 +1,7 @@
-this is requirements files
+pandas
+numpy
+python-binance
+
+font_hanken_grotesk
+pillow
+requests
