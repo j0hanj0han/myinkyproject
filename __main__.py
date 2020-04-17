@@ -1,3 +1,11 @@
+import myinkyproject.binance
+import myinkyproject.inky
+
+if __name__ == "__main__":
+    pass
+
+
+
 from PIL import Image, ImageFont, ImageDraw
 import myinkylib
 import datetime
@@ -29,4 +37,13 @@ if __name__ == "__main__":
         time.sleep(10)
 
 
+import binance_calls as bc 
 
+def display_price(pairs_list):
+    '''return pair and symbol'''
+    result = []
+    for pair in pairs_list:
+        price = round(float(bc.get_last_price(pair)),2)
+        price = f"{pair}: {price} USDT"
+        result.append(price)
+    return result
