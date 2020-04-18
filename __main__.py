@@ -1,7 +1,8 @@
 from myinkyproject.mybinance import binance
-#from myinkyproject.myinky import inky
+from myinkyproject.myinky import inky
 
 if __name__ == "__main__":
-    binance.get_last_price('BTCUSDT')
+    BTC = binance.get_last_price('BTCUSDT')
+    inky.DisplayToInky(str(BTC))
     #inky.write_text()
     pass

@@ -254,13 +254,13 @@ def get_close_prices(symbol, interval, start_str):
 #get_market_data('BTCUSDT', '1m', '2020-03-17 22:38:00 UTC+1')
 # get_close_prices('BTCUSDT', '1h', '3 weeks ago')
 
-if __name__ == "__main__":
-    API_KEY = os.environ["API_KEY"]
-    SECRET_KEY = os.environ["SECRET_KEY"]
-    try:
-        client = Client(API_KEY, SECRET_KEY)
-    except Exception as e:
-        print(e)
+# if __name__ == "__main__":
+#     API_KEY = os.environ["API_KEY"]
+#     SECRET_KEY = os.environ["SECRET_KEY"]
+#     try:
+#         client = Client(API_KEY, SECRET_KEY)
+#     except Exception as e:
+#         print(e)
 
 
     #get_last_price('BTCUSDT')
