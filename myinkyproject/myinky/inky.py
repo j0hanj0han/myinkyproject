@@ -3,26 +3,34 @@ from font_hanken_grotesk import HankenGroteskBold, HankenGroteskMedium
 import datetime
 import requests
 import time
+import os
 
-# from inky import InkyPHAT as InkyPHAT
-# colour = "black"
-# inky_display = InkyPHAT(colour)
+env = os.environ["ENV"]
+
+if env == "PROD":
+    from inky import InkyPHAT as InkyPHAT
+    colour = "black"
+    inky_display = InkyPHAT(colour)
 
 class DisplayToInky:
 
     ''' Create an image with a text string object '''
 
     def __init__(self, text):
-        # screen_width = inky_display.WIDTH
-        # screen_height = inky_display.HEIGHT
-        self.screen_width = 212
-        self.screen_height = 104
+        if env == "PROD":
+            self.screen_width = inky_display.WIDTH
+            self.screen_height = inky_display.HEIGHT
+        else:
+            self.screen_width = 212
+            self.screen_height = 104
+
         self.image = Image.new("P", (self.screen_width, self.screen_height))
         self.draw_object = ImageDraw.Draw(self.image)
         self.text = text
         self.write_text()
         self.borders = self.draw_borders()
         self.save_image()
+        self.display_to_screen()
   
     def draw_borders(self):
         ''' Draw a simple border on the screen '''
@@ -57,10 +65,11 @@ class DisplayToInky:
         img.save("bonjour.png", "PNG")
     
     def display_to_screen(self):
-        #inky_display.set_image(img)
-        #inky_display.show()
-        #time.sleep(30)
-        pass
+        if env == "PROD":
+            inky_display.set_image(img)
+            inky_display.show()
+        else:
+            pass
 
 
 
