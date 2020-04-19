@@ -66,7 +66,7 @@ class DisplayToInky:
     
     def display_to_screen(self):
         if env == "PROD":
-            inky_display.set_image(img)
+            inky_display.set_image(self.image)
             inky_display.show()
         else:
             pass
